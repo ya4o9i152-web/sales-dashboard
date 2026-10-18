@@ -99,11 +99,11 @@
   <rect x="1050" y="125" width="180" height="355" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
   <text x="1140" y="150" class="t" text-anchor="middle">Postgres ＋ Auth</text>
   <rect x="1063" y="162" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
-  <text x="1073" y="181" class="b" font-weight="700">sales_rows</text>
+  <text x="1073" y="181" class="b" font-weight="700">sales_data</text>
   <text x="1073" y="199" class="s">CSV の明細（月ごと）</text>
   <rect x="1063" y="220" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
-  <text x="1073" y="239" class="b" font-weight="700">monthly_kpis</text>
-  <text x="1073" y="257" class="s">月ごとの集計結果</text>
+  <text x="1073" y="239" class="b" font-weight="700">kpi_snapshots</text>
+  <text x="1073" y="257" class="s">全期間の集計結果</text>
   <rect x="1063" y="278" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
   <text x="1073" y="297" class="b" font-weight="700">ai_comments</text>
   <text x="1073" y="315" class="s">月ごとのコメント</text>
