@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 900" width="1260" height="900" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif">
+  <defs>
+    <marker id="a-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="a-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1A2E5C"/></marker>
+    <marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
+    <style>
+      .t{font-size:15px;font-weight:700;fill:#0f172a}
+      .b{font-size:12px;fill:#334155}
+      .s{font-size:11px;fill:#64748b}
+      .lane{font-size:13px;font-weight:700;fill:#64748b}
+      .lbl{font-size:11px;fill:#475569}
+      .up{stroke:#1A2E5C;stroke-width:2;fill:none;marker-end:url(#a-navy)}
+      .view{stroke:#475569;stroke-width:1.8;fill:none;marker-end:url(#a-gray)}
+      .ai{stroke:#7c3aed;stroke-width:1.8;fill:none;marker-end:url(#a-purple)}
+      .ci{stroke:#ea580c;stroke-width:1.8;fill:none;marker-end:url(#a-orange)}
+    </style>
+  </defs>
+
+  <rect width="1260" height="900" fill="#ffffff"/>
+
+  <!-- タイトル -->
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#0f172a">売上分析ダッシュボード 構成図（MVP）</text>
+  <text x="30" y="64" class="b">月1回の CSV アップロード ／ 集計はコード・AI はコメントだけ ／ 作る人 1名・見る人 7名 ／ 月額 約3,000円台（5,000円以内）</text>
+
+  <!-- レーン見出し -->
+  <text x="115" y="100" class="lane" text-anchor="middle">① 利用者</text>
+  <text x="360" y="100" class="lane" text-anchor="middle">② 画面（Next.js）</text>
+  <text x="650" y="100" class="lane" text-anchor="middle">③ サーバー処理（Vercel）</text>
+  <text x="915" y="100" class="lane" text-anchor="middle">④ 外部AI</text>
+  <text x="1135" y="100" class="lane" text-anchor="middle">⑤ 保存（Supabase）</text>
+  <line x1="30" y1="108" x2="1230" y2="108" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ① 利用者 -->
+  <rect x="30" y="125" width="170" height="110" rx="10" fill="#eef2f9" stroke="#1A2E5C" stroke-width="1.5"/>
+  <text x="115" y="155" class="t" text-anchor="middle">作る人</text>
+  <text x="115" y="178" class="b" text-anchor="middle">マーケ担当 1名</text>
+  <text x="115" y="198" class="s" text-anchor="middle">月1回、Shopify の CSV を</text>
+  <text x="115" y="214" class="s" text-anchor="middle">アップロード</text>
+
+  <rect x="30" y="345" width="170" height="110" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="115" y="375" class="t" text-anchor="middle">見る人</text>
+  <text x="115" y="398" class="b" text-anchor="middle">社長・部長・営業5名</text>
+  <text x="115" y="418" class="s" text-anchor="middle">PC・スマホで閲覧のみ</text>
+  <text x="115" y="434" class="s" text-anchor="middle">（レスポンシブ）</text>
+
+  <!-- ② 画面 -->
+  <rect x="240" y="125" width="240" height="110" rx="10" fill="#eef2f9" stroke="#1A2E5C" stroke-width="1.5"/>
+  <text x="360" y="150" class="t" text-anchor="middle">/upload（作る人のみ）</text>
+  <text x="256" y="173" class="b">・ドラッグ＆ドロップで CSV を選択</text>
+  <text x="256" y="192" class="b">・不正な行をその場で一覧表示</text>
+  <text x="256" y="211" class="b">・同じ月を上げ直すと上書き</text>
+
+  <rect x="240" y="320" width="240" height="160" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="360" y="345" class="t" text-anchor="middle">/（ダッシュボード）</text>
+  <text x="256" y="368" class="b">・KPI カード 3つ ＋ 前月比</text>
+  <text x="270" y="385" class="s">売上 ／ 粗利（率） ／ リピート率</text>
+  <text x="256" y="406" class="b">・月次推移グラフ</text>
+  <text x="256" y="425" class="b">・カテゴリ別 ／ SKU トップ10</text>
+  <text x="256" y="444" class="b">・AI 分析コメント</text>
+  <text x="256" y="467" class="s">Recharts ／ 白＋ネイビー #1A2E5C</text>
+
+  <!-- ③ サーバー処理 -->
+  <rect x="520" y="125" width="260" height="182" rx="10" fill="#eef2f9" stroke="#1A2E5C" stroke-width="1.5"/>
+  <text x="650" y="150" class="t" text-anchor="middle">アップロード処理</text>
+  <text x="650" y="166" class="s" text-anchor="middle">Server Action</text>
+  <text x="536" y="186" class="b">1. CSV 検証：8列・日付・数値</text>
+  <text x="536" y="206" class="b">2. 集計（lib/kpi.ts）</text>
+  <text x="552" y="223" class="s">売上・粗利・リピート率・前月比</text>
+  <text x="552" y="238" class="s">カテゴリ別・SKU トップ10</text>
+  <text x="536" y="258" class="b">3. 明細と集計結果を保存</text>
+  <text x="536" y="277" class="b">4. AI コメントを生成（1回だけ）</text>
+  <text x="536" y="295" class="s">正解値との一致を自動テストで保証</text>
+
+  <rect x="520" y="355" width="260" height="90" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="650" y="380" class="t" text-anchor="middle">表示処理（Server Component）</text>
+  <text x="536" y="403" class="b">・保存済みの集計と AI コメントを読む</text>
+  <text x="536" y="422" class="b">・閲覧時に AI は呼ばない</text>
+  <text x="536" y="438" class="s">見る人が何回開いても API 費用は増えない</text>
+
+  <!-- ④ 外部AI -->
+  <rect x="820" y="125" width="190" height="90" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="915" y="150" class="t" text-anchor="middle">Claude API</text>
+  <text x="834" y="172" class="b">claude-opus-5-5</text>
+  <text x="834" y="191" class="b">入力：集計済み JSON のみ</text>
+  <text x="834" y="207" class="s">生の CSV・顧客 ID は送らない</text>
+
+  <rect x="820" y="258" width="190" height="175" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="915" y="281" class="t" text-anchor="middle">分析プロンプトの型</text>
+  <text x="834" y="303" class="s">役割：EC 専門のコンサルタント</text>
+  <text x="834" y="323" class="b">出力（固定の形）</text>
+  <text x="842" y="341" class="s">① サマリー 3行</text>
+  <text x="842" y="357" class="s">② 良かった点 ③ 懸念点</text>
+  <text x="842" y="373" class="s">④ 来月のアクション 3つ</text>
+  <text x="852" y="388" class="s">（それぞれ根拠の数字つき）</text>
+  <text x="834" y="413" font-size="11" font-weight="700" fill="#b91c1c">入力にない数字は書かない</text>
+
+  <!-- ⑤ 保存 -->
+  <rect x="1050" y="125" width="180" height="355" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+  <text x="1140" y="150" class="t" text-anchor="middle">Postgres ＋ Auth</text>
+  <rect x="1063" y="162" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
+  <text x="1073" y="181" class="b" font-weight="700">sales_rows</text>
+  <text x="1073" y="199" class="s">CSV の明細（月ごと）</text>
+  <rect x="1063" y="220" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
+  <text x="1073" y="239" class="b" font-weight="700">monthly_kpis</text>
+  <text x="1073" y="257" class="s">月ごとの集計結果</text>
+  <rect x="1063" y="278" width="154" height="50" rx="5" fill="#ffffff" stroke="#bbf7d0"/>
+  <text x="1073" y="297" class="b" font-weight="700">ai_comments</text>
+  <text x="1073" y="315" class="s">月ごとのコメント</text>
+  <rect x="1063" y="336" width="154" height="66" rx="5" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="1073" y="355" class="b" font-weight="700" fill="#b91c1c">profiles（権限）</text>
+  <text x="1073" y="373" class="s">editor：アップロード可</text>
+  <text x="1073" y="389" class="s">viewer：閲覧のみ（RLS）</text>
+  <text x="1063" y="422" class="s">Free プラン（東京）</text>
+  <text x="1063" y="440" class="s">ログイン方法は確認中</text>
+  <text x="1063" y="458" class="s">氏名・住所は保存しない</text>
+
+  <!-- 矢印：アップロードの流れ -->
+  <path class="up" d="M200,180 L238,180"/>
+  <path class="up" d="M480,180 L518,180"/>
+  <text x="499" y="172" class="lbl" text-anchor="middle">CSV</text>
+  <path class="ai" d="M780,175 L818,175"/>
+  <path class="ai" d="M820,200 L782,200"/>
+  <path class="up" d="M780,232 L1048,232"/>
+  <text x="915" y="249" class="lbl" text-anchor="middle">明細・集計・コメントを保存</text>
+
+  <!-- 矢印：閲覧の流れ -->
+  <path class="view" d="M200,400 L238,400"/>
+  <path class="view" d="M480,400 L518,400"/>
+  <path class="view" d="M1050,430 C960,470 860,460 782,420"/>
+  <text x="915" y="472" class="lbl" text-anchor="middle">保存済みの値を読む</text>
+
+  <!-- 凡例 -->
+  <line x1="30" y1="500" x2="60" y2="500" class="up"/>
+  <text x="68" y="504" class="lbl">アップロード（月1回）</text>
+  <line x1="220" y1="500" x2="250" y2="500" class="view"/>
+  <text x="258" y="504" class="lbl">閲覧（随時）</text>
+  <line x1="350" y1="500" x2="380" y2="500" class="ai"/>
+  <text x="388" y="504" class="lbl">AI 呼び出し（アップロード時のみ）</text>
+
+  <!-- ⑥ CI/CD -->
+  <text x="30" y="550" class="lane">⑥ 開発・自動化（GitHub Actions ＋ Vercel）</text>
+  <line x1="30" y1="558" x2="1230" y2="558" stroke="#e2e8f0" stroke-width="1"/>
+
+  <rect x="30" y="575" width="170" height="95" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="115" y="603" class="t" text-anchor="middle">Pull Request</text>
+  <text x="115" y="625" class="b" text-anchor="middle">開発者が変更を提出</text>
+  <text x="115" y="644" class="s" text-anchor="middle">main への直接 push は禁止</text>
+
+  <rect x="240" y="575" width="290" height="105" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="385" y="598" class="t" text-anchor="middle">CI（ci.yml・Node 24）</text>
+  <text x="256" y="620" class="b">型チェック → Lint → テスト → ビルド</text>
+  <text x="256" y="640" class="b">テスト：サンプル CSV で正解値と一致</text>
+  <text x="256" y="657" class="s">売上 ¥560,600 ／ 粗利 ¥349,100</text>
+  <text x="256" y="672" class="s">リピート率 28.6%（28人中8人）</text>
+
+  <rect x="570" y="575" width="210" height="95" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="675" y="603" class="t" text-anchor="middle">ブランチ保護</text>
+  <text x="675" y="625" class="b" text-anchor="middle">CI 合格のときだけ</text>
+  <text x="675" y="644" class="b" text-anchor="middle">main にマージできる</text>
+
+  <rect x="820" y="575" width="190" height="95" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="915" y="603" class="t" text-anchor="middle">Vercel 自動デプロイ</text>
+  <text x="915" y="625" class="b" text-anchor="middle">main マージ → 本番</text>
+  <text x="915" y="644" class="s" text-anchor="middle">PR ごとにプレビュー URL</text>
+
+  <rect x="1050" y="575" width="180" height="95" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+  <text x="1140" y="603" class="t" text-anchor="middle">Vercel Cron</text>
+  <text x="1140" y="625" class="b" text-anchor="middle">毎日 DB に接続</text>
+  <text x="1140" y="644" class="s" text-anchor="middle">Free の自動停止を防ぐ</text>
+
+  <path class="ci" d="M200,622 L238,622"/>
+  <path class="ci" d="M530,622 L568,622"/>
+  <path class="ci" d="M780,622 L818,622"/>
+  <path class="view" d="M1140,575 L1140,482"/>
+
+  <!-- 月額コスト -->
+  <rect x="30" y="700" width="560" height="185" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="50" y="718" class="t">月額コスト（試算）</text>
+  <text x="50" y="745" class="b">Vercel Pro</text>
+  <text x="250" y="745" class="b">約 3,000円</text>
+  <text x="360" y="745" class="s">Hobby は商用利用不可。$20 × 150円</text>
+  <text x="50" y="770" class="b">Supabase Free</text>
+  <text x="250" y="770" class="b">0円</text>
+  <text x="360" y="770" class="s">Cron で自動停止を回避</text>
+  <text x="50" y="795" class="b">Claude API</text>
+  <text x="250" y="795" class="b">100円未満（見込み）</text>
+  <text x="360" y="795" class="s">月1回・集計 JSON のみ送信</text>
+  <text x="50" y="820" class="b">GitHub Actions</text>
+  <text x="250" y="820" class="b">0円</text>
+  <text x="360" y="820" class="s">無料枠の範囲</text>
+  <line x1="50" y1="832" x2="570" y2="832" stroke="#cbd5e1"/>
+  <text x="50" y="857" class="t">合計</text>
+  <text x="250" y="857" class="t" fill="#1A2E5C">約 3,100円</text>
+  <text x="360" y="857" class="s">為替・API 単価は提案書作成時に確定</text>
+
+  <!-- Phase 2 -->
+  <rect x="620" y="700" width="610" height="185" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="640" y="718" class="t" fill="#64748b">Phase 2 以降（今回は作らない）</text>
+  <text x="640" y="748" class="b">・Shopify API 直接連携（日次で自動更新）</text>
+  <text x="640" y="773" class="b">・異常検知アラート（前月比 ±20% で Slack 通知）</text>
+  <text x="640" y="798" class="b">・PDF レポート自動生成 ＋ メール配信</text>
+  <text x="640" y="823" class="b">・多店舗・多チャネル対応（Amazon・楽天 等）</text>
+  <text x="640" y="848" class="b">・在庫回転率（在庫データの取り込みが必要）</text>
+</svg>

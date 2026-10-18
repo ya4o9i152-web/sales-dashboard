@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# 同じブランチで新しく push されたら、古い実行は止める
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: 型チェック
+        run: npm run type-check
+      - name: Lint
+        run: npm run lint
+      - name: テスト（集計の正解値・CSVの検証・AI分析のSnapshot）
+        run: npm test
+      - name: スキーマと権限の検証
+        run: npm run verify:schema
+      - name: ビルド
+        run: npm run build
+        env:
+          # ビルドは接続しないので、形だけの値でよい（本物のキーは Vercel の環境変数にだけ置く）
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_PUBLISHABLE_KEY: build-only-placeholder

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 760" width="1260" height="760" font-family="'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif">
+  <defs>
+    <marker id="a-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1A2E5C"/></marker>
+    <style>
+      .h{font-size:20px;font-weight:700;fill:#1A2E5C}
+      .t{font-size:16px;font-weight:700;fill:#0f172a}
+      .b{font-size:14px;fill:#334155}
+      .s{font-size:12px;fill:#64748b}
+      .step{font-size:13px;font-weight:700;fill:#ffffff}
+      .arrow{stroke:#1A2E5C;stroke-width:3;fill:none;marker-end:url(#a-navy)}
+    </style>
+  </defs>
+
+  <rect width="1260" height="760" fill="#ffffff"/>
+
+  <!-- タイトル -->
+  <text x="30" y="42" font-size="24" font-weight="700" fill="#0f172a">売上分析ダッシュボード しくみ図（MVP）</text>
+  <text x="30" y="70" class="b">毎月の報告作業 3時間 → 30分（目標）。CSV を入れるだけで、グラフと AI のコメントがそろいます。</text>
+
+  <!-- ステップ1 -->
+  <rect x="30" y="100" width="370" height="290" rx="14" fill="#eef2f9" stroke="#1A2E5C" stroke-width="2"/>
+  <rect x="50" y="118" width="88" height="28" rx="14" fill="#1A2E5C"/>
+  <text x="94" y="137" class="step" text-anchor="middle">STEP 1</text>
+  <text x="50" y="180" class="h">毎月1回、CSV を入れる</text>
+  <text x="50" y="208" class="s">マーケ担当の方（1名）</text>
+  <text x="50" y="245" class="b">・Shopify から落とした CSV を</text>
+  <text x="62" y="267" class="b">画面にドラッグするだけ</text>
+  <text x="50" y="297" class="b">・形式の誤りはその場でお知らせ</text>
+  <text x="50" y="327" class="b">・同じ月を入れ直すと上書き</text>
+  <text x="50" y="368" class="s">Excel での整形・グラフ作りは不要になります</text>
+
+  <path class="arrow" d="M405,245 L440,245"/>
+
+  <!-- ステップ2 -->
+  <rect x="445" y="100" width="370" height="290" rx="14" fill="#eef2f9" stroke="#1A2E5C" stroke-width="2"/>
+  <rect x="465" y="118" width="88" height="28" rx="14" fill="#1A2E5C"/>
+  <text x="509" y="137" class="step" text-anchor="middle">STEP 2</text>
+  <text x="465" y="180" class="h">自動で集計、AI がコメント</text>
+  <text x="465" y="208" class="s">アップロードと同時に自動で処理</text>
+  <text x="465" y="245" class="b">・<tspan font-weight="700">数字はプログラムが計算</tspan></text>
+  <text x="477" y="267" class="b">プログラム修正のたびに正解と自動照合</text>
+  <text x="465" y="297" class="b">・<tspan font-weight="700">AI は数字を読んで文章を書く</tspan></text>
+  <text x="477" y="319" class="b">「今月の要約」と「来月の打ち手 3つ」</text>
+  <text x="477" y="341" class="b">（コンサルタント調）</text>
+  <text x="465" y="368" class="s">AI が数字を計算・変更することはありません</text>
+
+  <path class="arrow" d="M820,245 L855,245"/>
+
+  <!-- ステップ3 -->
+  <rect x="860" y="100" width="370" height="290" rx="14" fill="#eef2f9" stroke="#1A2E5C" stroke-width="2"/>
+  <rect x="880" y="118" width="88" height="28" rx="14" fill="#1A2E5C"/>
+  <text x="924" y="137" class="step" text-anchor="middle">STEP 3</text>
+  <text x="880" y="180" class="h">いつでも、どこでも見られる</text>
+  <text x="880" y="208" class="s">社長・マーケ部長・営業 5名（見るだけ）</text>
+  <text x="880" y="245" class="b">・売上 ／ 粗利 ／ リピート率 と前月比</text>
+  <text x="880" y="275" class="b">・月ごとの推移グラフ</text>
+  <text x="880" y="305" class="b">・カテゴリ別、売れ筋トップ10</text>
+  <text x="880" y="335" class="b">・AI の分析コメント</text>
+  <text x="880" y="368" class="s">PC・スマホ対応。ブランドカラー（白＋ネイビー）</text>
+
+  <!-- 安心材料 -->
+  <text x="30" y="440" class="t">安心していただけるポイント</text>
+  <rect x="30" y="455" width="285" height="120" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="48" y="485" class="t" fill="#1A2E5C">数字の正確さ</text>
+  <text x="48" y="512" class="b">集計はプログラムが行い、</text>
+  <text x="48" y="533" class="b">修正のたびに正解と照合。</text>
+  <text x="48" y="554" class="b">合格したものだけ反映します</text>
+
+  <rect x="335" y="455" width="285" height="120" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="353" y="485" class="t" fill="#1A2E5C">お客様情報</text>
+  <text x="353" y="512" class="b">氏名・住所は保存しません。</text>
+  <text x="353" y="533" class="b">AI に送るのは集計後の</text>
+  <text x="353" y="554" class="b">数字だけです</text>
+
+  <rect x="640" y="455" width="285" height="120" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="658" y="485" class="t" fill="#1A2E5C">見る人と作る人を分離</text>
+  <text x="658" y="512" class="b">データを入れられるのは</text>
+  <text x="658" y="533" class="b">担当の方だけ。ほかの方は</text>
+  <text x="658" y="554" class="b">閲覧のみで誤操作を防ぎます</text>
+
+  <rect x="945" y="455" width="285" height="120" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="963" y="485" class="t" fill="#1A2E5C">月々の費用</text>
+  <text x="963" y="518" font-size="22" font-weight="700" fill="#1A2E5C">約 3,000円台</text>
+  <text x="963" y="545" class="b">ご予算 5,000円以内</text>
+  <text x="963" y="564" class="s">見る人が増えても AI 費用は増えません</text>
+
+  <!-- 次の段階 -->
+  <rect x="30" y="605" width="1200" height="125" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="50" y="635" class="t" fill="#64748b">次の段階（Phase 2）でできること</text>
+  <text x="50" y="668" class="b">・Shopify と自動でつながり、毎日更新</text>
+  <text x="50" y="698" class="b">・売上の急な増減を Slack でお知らせ</text>
+  <text x="640" y="668" class="b">・PDF のレポートを自動作成してメールで配信</text>
+  <text x="640" y="698" class="b">・Amazon・楽天などの売上もまとめて表示</text>
+</svg>

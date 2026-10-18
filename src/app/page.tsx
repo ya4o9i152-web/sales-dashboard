@@ -1,69 +1,79 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Header } from "@/components/Header";
+import { KpiCards } from "@/components/KpiCards";
+import { MonthlyTrendChart } from "@/components/charts/MonthlyTrendChart";
+import { CategoryChart } from "@/components/charts/CategoryChart";
+import { SkuRanking } from "@/components/SkuRanking";
+import { AiComment } from "@/components/AiComment";
+import { getCurrentUser, getLatestDashboard } from "@/lib/data";
+import { monthLabel } from "@/lib/format";
 
-export default function Home() {
+function Panel({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <section className="rounded-xl border border-line bg-white p-5">
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-1">
+        <h2 className="font-bold text-navy">{title}</h2>
+        {note && <span className="text-xs text-ink-muted">{note}</span>}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+export default async function DashboardPage() {
+  const [user, { snapshot, report }] = await Promise.all([getCurrentUser(), getLatestDashboard()]);
+
+  if (!snapshot) {
+    return (
+      <>
+        <Header user={user} current="dashboard" />
+        <main className="mx-auto max-w-6xl px-4 py-16 text-center">
+          <p className="text-ink-muted">まだデータがありません。</p>
+          {user.role === "editor" ? (
+            <Link href="/upload" className="mt-4 inline-block rounded-md bg-navy px-4 py-2 text-white">
+              最初のCSVを取り込む
+            </Link>
+          ) : (
+            <p className="mt-2 text-sm text-ink-muted">担当者がCSVを取り込むと、ここに表示されます。</p>
+          )}
+        </main>
+      </>
+    );
+  }
+
+  const { kpis } = snapshot;
+  const first = kpis.months[0].month;
+  return (
+    <>
+      <Header user={user} current="dashboard" />
+      <main className="mx-auto max-w-6xl space-y-5 px-4 py-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h1 className="text-xl font-bold">{monthLabel(kpis.latestMonth)}の実績</h1>
+          <p className="text-xs text-ink-muted">
+            データ期間 {monthLabel(first)}〜{monthLabel(kpis.latestMonth)} ／ 最終更新{" "}
+            {new Date(snapshot.createdAt).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" })}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <KpiCards kpis={kpis} />
+
+        <Panel title="AIの分析コメント" note="数字はダッシュボードの集計値をそのまま引用しています">
+          <AiComment report={report} snapshotId={snapshot.id} canRegenerate={user.role === "editor"} />
+        </Panel>
+
+        <div className="grid gap-5 lg:grid-cols-2">
+          <Panel title="月次推移" note="売上・粗利">
+            <MonthlyTrendChart months={kpis.months} />
+          </Panel>
+          <Panel title="カテゴリ別の売上" note="データ期間の合計">
+            <CategoryChart categories={kpis.categories} total={kpis.total.revenue} />
+          </Panel>
         </div>
+
+        <Panel title="売れ筋商品トップ10" note="データ期間の合計・売上順">
+          <SkuRanking skus={kpis.skuTop10} />
+        </Panel>
       </main>
-    </div>
+    </>
   );
 }
