@@ -6,7 +6,7 @@ export function SkuRanking({ skus }: { skus: Kpis["skuTop10"] }) {
   const max = Math.max(...skus.map((s) => s.revenue), 1);
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-sm">
+      <table className="w-full text-sm [&_th]:whitespace-nowrap">
         <thead>
           <tr className="border-b border-line text-left text-ink-muted">
             <th className="w-10 py-2 font-medium">順位</th>
@@ -20,7 +20,7 @@ export function SkuRanking({ skus }: { skus: Kpis["skuTop10"] }) {
           {skus.map((s, i) => (
             <tr key={s.sku} className="border-b border-line/70">
               <td className="py-2 font-bold text-navy tabular-nums">{i + 1}</td>
-              <td className="py-2">
+              <td className="py-2 pr-4">
                 <div>{s.productName}</div>
                 <div className="mt-1 h-1.5 rounded-full bg-navy-50">
                   <div className="h-1.5 rounded-full bg-navy" style={{ width: `${(s.revenue / max) * 100}%` }} />

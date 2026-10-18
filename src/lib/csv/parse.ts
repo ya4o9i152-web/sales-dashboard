@@ -159,7 +159,7 @@ export function parseSalesCsv(bytes: Uint8Array, options: ParseOptions = {}): Pa
       const text = cell(column);
       const digits = normalizeInteger(text);
       if (digits === null) {
-        fail(column, text, `${label}は整数で入力してください`);
+        fail(column, text, `${label}は${min}以上の整数で入力してください（小数・マイナスは不可）`);
         return 0;
       }
       if (digits !== text) cleanings.push({ line, column, before: text, after: digits, reason: "¥・カンマを外しました" });

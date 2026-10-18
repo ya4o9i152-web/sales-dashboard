@@ -14,6 +14,7 @@ export function buildAnalysisInput(kpis: Kpis) {
   return {
     対象月: monthLabel(latest.month),
     前月: previous ? monthLabel(previous.month) : "なし",
+    アクションの実行月: monthLabel(nextMonth(latest.month)),
     主要KPI: {
       売上: {
         当月: yen(latest.revenue),
@@ -65,6 +66,12 @@ export function buildAnalysisInput(kpis: Kpis) {
       売上: yen(s.revenue),
     })),
   };
+}
+
+/** "2025-11" → "2025-12"、"2025-12" → "2026-01" */
+function nextMonth(month: string): string {
+  const [y, m] = month.split("-").map(Number);
+  return m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, "0")}`;
 }
 
 export type AnalysisInput = ReturnType<typeof buildAnalysisInput>;

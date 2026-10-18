@@ -17,7 +17,7 @@ export function CategoryChart({ categories, total }: { categories: Kpis["categor
             cursor={{ fill: "rgba(26,46,92,0.06)" }}
             formatter={(value, _name, item) => [`${yen(Number(value))}（構成比 ${percent(item.payload.share)}）`, "売上"]}
           />
-          <Bar dataKey="revenue" fill="#1a2e5c" radius={[0, 4, 4, 0]} barSize={22}>
+          <Bar dataKey="revenue" fill="#1a2e5c" isAnimationActive={false} radius={[0, 4, 4, 0]} barSize={22}>
             <LabelList
               dataKey="revenue"
               position="right"

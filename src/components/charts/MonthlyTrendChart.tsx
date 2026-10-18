@@ -25,17 +25,18 @@ export function MonthlyTrendChart({ months }: { months: MonthKpi[] }) {
           />
           <Tooltip
             cursor={{ fill: "rgba(26,46,92,0.06)" }}
-            formatter={(value, name) => [yen(Number(value)), name === "revenue" ? "売上" : "粗利"]}
+            formatter={(value, name) => [yen(Number(value)), name]}
             labelFormatter={(_, payload) => {
               const p = payload?.[0]?.payload as (typeof data)[number] | undefined;
               return p ? `${monthLabel(p.month)}（粗利率 ${percent(p.margin)}）` : "";
             }}
           />
-          <Legend formatter={(value) => <span className="text-sm text-ink">{value === "revenue" ? "売上" : "粗利"}</span>} />
-          <Bar dataKey="revenue" fill={NAVY} radius={[4, 4, 0, 0]} maxBarSize={48}>
+          {/* 凡例は系列の順（売上→粗利）。既定では名前順に並び替えられる */}
+          <Legend itemSorter={null} formatter={(value) => <span className="text-sm text-ink">{value}</span>} />
+          <Bar dataKey="revenue" name="売上" fill={NAVY} isAnimationActive={false} radius={[4, 4, 0, 0]} maxBarSize={48}>
             <LabelList dataKey="revenue" position="top" formatter={(v) => yen(Number(v))} style={{ fill: "#1f2937", fontSize: 11 }} />
           </Bar>
-          <Bar dataKey="grossProfit" fill={SERIES_2} radius={[4, 4, 0, 0]} maxBarSize={48} />
+          <Bar dataKey="grossProfit" name="粗利" fill={SERIES_2} isAnimationActive={false} radius={[4, 4, 0, 0]} maxBarSize={48} />
         </BarChart>
       </ResponsiveContainer>
     </div>
