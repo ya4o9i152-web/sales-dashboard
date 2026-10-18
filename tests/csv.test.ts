@@ -18,7 +18,12 @@ describe("CSVの読み込み", () => {
   });
 
   it("BOM付きUTF-8でも見出しを正しく読む", () => {
-    const result = fromText("﻿order_date,customer_id,product_name,category,sku,quantity,revenue,cost\n2025-09-03,C001,Tシャツ,トップス,LUM-TOP-01,2,7600,2800\n");
+    const result = fromText("\uFEFForder_date,customer_id,product_name,category,sku,quantity,revenue,cost\n2025-09-03,C001,Tシャツ,トップス,LUM-TOP-01,2,7600,2800\n");
+    expect(result.ok).toBe(true);
+  });
+
+  it("見出しの表記ゆれ（大文字・空白・全角）をそろえる", () => {
+    const result = fromText("Order Date,Customer ID,Product Name,Category,ＳＫＵ,Quantity,Revenue,Cost\n2025-09-03,C001,Tシャツ,トップス,LUM-TOP-01,2,7600,2800\n");
     expect(result.ok).toBe(true);
   });
 

@@ -108,7 +108,9 @@ check("viewer は読める", r.rows[0].c === 3, `${r.rows[0].c}行`);
 
 await db.exec(`set role anon;`);
 r = await db.query(`select count(*)::int c from sales_data`).catch(() => ({ rows: [{ c: -1 }] }));
+const ping = await db.query(`select keepalive() as ok`).catch(() => ({ rows: [{ ok: false }] }));
 await db.exec(`reset role;`);
+check("未ログインでも keepalive() は呼べる（Cronで使う）", ping.rows[0].ok === true);
 check("ログインしていなければ読めない", r.rows[0].c <= 0, r.rows[0].c < 0 ? "権限エラー" : `${r.rows[0].c}行`);
 
 const passed = results.filter(Boolean).length;

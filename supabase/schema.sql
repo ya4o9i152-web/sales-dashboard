@@ -151,6 +151,11 @@ begin
   end loop;
 end $$;
 
+-- Supabase Free の自動停止を防ぐため、Vercel Cron が毎日呼ぶ。データは何も返さない
+create or replace function keepalive() returns boolean language sql stable as $$ select true $$;
+grant execute on function keepalive() to anon;
+
+-- 「Automatically expose new tables」をオフにしたプロジェクトでも動くよう、必要な権限だけを明示する
 grant select on profiles to authenticated;
 grant select, insert, update, delete on uploads, sales_data, kpi_snapshots, ai_reports to authenticated;
 grant execute on function import_sales(text, text[], text, integer, jsonb) to authenticated;

@@ -9,8 +9,8 @@ export async function GET(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!);
-  // 未ログインなので RLS により0行が返るが、データベースへのアクセスとして数えられる
-  const { error } = await supabase.from("kpi_snapshots").select("id").limit(1);
+  // データを返さない関数を呼ぶだけ（未ログインの利用者にはテーブルを見せない）
+  const { error } = await supabase.rpc("keepalive");
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
   return Response.json({ ok: true });
 }

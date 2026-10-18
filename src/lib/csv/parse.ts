@@ -60,6 +60,11 @@ function normalizeText(value: string): string {
   return value.normalize("NFKC").trim();
 }
 
+/** 見出しの表記ゆれをそろえる："Order Date" → "order_date"、"ＳＫＵ" → "sku" */
+export function normalizeHeader(header: string): string {
+  return normalizeText(header).toLowerCase().replace(/[\s-]+/g, "_");
+}
+
 /** 2025/9/3・2025-9-3 などを 2025-09-03 にそろえる。実在しない日付は null */
 function normalizeDate(value: string): string | null {
   const m = value.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
@@ -94,7 +99,7 @@ export function parseSalesCsv(bytes: Uint8Array, options: ParseOptions = {}): Pa
   const parsed = Papa.parse<Record<string, string>>(text, {
     header: true,
     skipEmptyLines: "greedy",
-    transformHeader: (h) => normalizeText(h).toLowerCase(),
+    transformHeader: normalizeHeader,
   });
 
   const headers = parsed.meta.fields ?? [];
