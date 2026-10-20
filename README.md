@@ -76,6 +76,8 @@ cp .env.example .env.local   # Supabase と Claude のキーを書き込む
 | `ヒアリングシート.md` / `ヒアリング回答.md` | 依頼内容の確認とクライアントの回答 |
 | `スコープ.md` | MVPとPhase 2、KPIの定義、AI分析の型、見本との違い、未確認事項 |
 | `提案書.md` / `提案書.pdf` | クライアント向けの提案書 |
+| `CSVフォーマット仕様書.md` | 取り込むCSVの必須の8列、正規化のルール、Shopifyの注文CSVからの作り方 |
+| `納品チェックリスト.md` | 納品前の確認結果、クライアントへの確認事項、引き継ぎ事項 |
 | `docs/architecture.svg` / `docs/architecture-simple.svg` | 構成図（技術者向け／決裁者向け） |
 
 ※ サンプルデータ（架空ブランド「LUMINA」）はすべて学習用のダミーです。
