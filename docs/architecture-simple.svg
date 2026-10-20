@@ -15,7 +15,7 @@
 
   <!-- タイトル -->
   <text x="30" y="42" font-size="24" font-weight="700" fill="#0f172a">売上分析ダッシュボード しくみ図（MVP）</text>
-  <text x="30" y="70" class="b">毎月の報告作業 3時間 → 30分（目標）。CSV を入れるだけで、グラフと AI のコメントがそろいます。</text>
+  <text x="30" y="70" class="b">毎月の報告作業 3時間 → 30分（目標）。8列にそろえた CSV を入れるだけで、グラフと AI のコメントがそろいます。</text>
 
   <!-- ステップ1 -->
   <rect x="30" y="100" width="370" height="290" rx="14" fill="#eef2f9" stroke="#1A2E5C" stroke-width="2"/>
@@ -23,11 +23,11 @@
   <text x="94" y="137" class="step" text-anchor="middle">STEP 1</text>
   <text x="50" y="180" class="h">毎月1回、CSV を入れる</text>
   <text x="50" y="208" class="s">マーケ担当の方（1名）</text>
-  <text x="50" y="245" class="b">・Shopify から落とした CSV を</text>
+  <text x="50" y="245" class="b">・8列の形式にそろえた CSV を</text>
   <text x="62" y="267" class="b">画面にドラッグするだけ</text>
   <text x="50" y="297" class="b">・形式の誤りはその場でお知らせ</text>
   <text x="50" y="327" class="b">・同じ月を入れ直すと上書き</text>
-  <text x="50" y="368" class="s">Excel での整形・グラフ作りは不要になります</text>
+  <text x="50" y="368" class="s">グラフ作り・集計は不要に（原価の列の追加は必要）</text>
 
   <path class="arrow" d="M405,245 L440,245"/>
 
