@@ -83,7 +83,7 @@ export async function generateReport(snapshotId: string): Promise<{ ok: true } |
     if (insertError) return { ok: false, message: `コメントの保存に失敗しました：${insertError.message}` };
   } catch (e) {
     console.error("AI分析の生成に失敗", e);
-    return { ok: false, message: "AIのコメントを作成できませんでした。時間をおいて「作り直す」を押してください" };
+    return { ok: false, message: "AIのコメントを作成できませんでした。時間をおいて、もう一度お試しください" };
   }
   revalidatePath("/");
   return { ok: true };

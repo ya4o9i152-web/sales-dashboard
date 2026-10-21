@@ -53,7 +53,7 @@ export function UploadForm() {
     const report = await generateReport(imported.snapshotId);
     setStep("done");
     if (!report.ok) {
-      setMessage(`データの取り込みは完了しました。${report.message}`);
+      setMessage("データの取り込みは完了しました。AIのコメントは作成できなかったため、時間をおいて、ダッシュボードのコメント欄の「コメントを作成する」を押してください");
       return;
     }
     router.push("/");
